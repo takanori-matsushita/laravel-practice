@@ -1,3 +1,6 @@
+@extends('layouts.layout')
+@section('title', 'About')
+@section('content')
 <h1>About</h1>
 <p>
   <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
@@ -7,3 +10,4 @@
   <a href="http://rubyonrails.org/">Ruby on Rails</a>.
   This is the sample application for the tutorial.
 </p>
+@endsection

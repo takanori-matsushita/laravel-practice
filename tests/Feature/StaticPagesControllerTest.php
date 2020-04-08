@@ -15,16 +15,19 @@ class StaticPagesControllerTest extends TestCase
    */
   public function testStaticPagesController()
   {
-    $response = $this->get('/static_pages/home');
+    $response = $this->get('/');
     $response->assertSuccessful();
-    // $browser->assertTitle('Home | Ruby on Rails Tutorial Sample App');
+
+    $response = $this->get('/static_pages/home');
+    $response->assertRedirect('/');
 
     $response = $this->get('/static_pages/help');
     $response->assertSuccessful();
-    // $browser->assertTitle('Help | Ruby on Rails Tutorial Sample App');
 
     $response = $this->get('/static_pages/about');
     $response->assertSuccessful();
-    // $browser->assertTitle('About | Ruby on Rails Tutorial Sample App');
+
+    $response = $this->get('/static_pages/contact');
+    $response->assertSuccessful();
   }
 }
