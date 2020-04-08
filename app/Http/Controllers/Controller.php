@@ -13,6 +13,6 @@ class Controller extends BaseController
 
   public function hello()
   {
-    return '<html><body><h1>Hello World</h1></body></html>';
+    return 'Hello World!';
   }
 }
