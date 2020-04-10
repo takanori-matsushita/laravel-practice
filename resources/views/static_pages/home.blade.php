@@ -1,5 +1,8 @@
+@php
+$title = ''
+@endphp
 @extends('layouts.layout')
-@section('title', 'Home')
+@section('title', "Home")
 @section('content')
 <h1>Sample App</h1>
 <p>

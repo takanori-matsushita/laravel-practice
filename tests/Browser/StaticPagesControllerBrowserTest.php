@@ -23,7 +23,7 @@ class StaticPagesControllerBrowserTest extends DuskTestCase
   {
     $this->browse(function (Browser $browser) {
       $browser->visit('/')
-        ->assertTitle('Home | ' . $this->base_title);
+        ->assertTitle($this->base_title);
     });
   }
 
@@ -31,7 +31,7 @@ class StaticPagesControllerBrowserTest extends DuskTestCase
   {
     $this->browse(function (Browser $browser) {
       $browser->visit('/static_pages/home')
-        ->assertTitle('Home | ' . $this->base_title);
+        ->assertTitle($this->base_title);
     });
   }
 

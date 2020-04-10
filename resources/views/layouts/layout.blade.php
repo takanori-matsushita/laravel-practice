@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>@yield('title') | Ruby on Rails Tutorial Sample App</title>
+  <title>{{fullTitle($title)}}</title>
   <meta name="csrf-token" content="{{csrf_token()}}">
   <link rel="stylesheet" href={{ asset('/css/app.css') }}>
   <script src={{'/js/app.js'}} defer></script>

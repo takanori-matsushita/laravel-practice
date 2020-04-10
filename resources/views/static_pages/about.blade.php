@@ -1,3 +1,6 @@
+@php
+$title = 'About'
+@endphp
 @extends('layouts.layout')
 @section('title', 'About')
 @section('content')
