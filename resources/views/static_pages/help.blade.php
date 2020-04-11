@@ -2,7 +2,6 @@
 $title = 'Help'
 @endphp
 @extends('layouts.layout')
-@section('title', 'Help')
 @section('content')
 <h1>Help</h1>
 <p> Get help on the Ruby on Rails Tutorial at the

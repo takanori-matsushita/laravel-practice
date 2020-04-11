@@ -3,13 +3,16 @@
 
 <head>
   <title>{{fullTitle($title)}}</title>
-  <meta name="csrf-token" content="{{csrf_token()}}">
-  <link rel="stylesheet" href={{ asset('/css/app.css') }}>
-  <script src={{'/js/app.js'}} defer></script>
+  @include('layouts.laravel_default')
+  @include('layouts.shim')
 </head>
 
 <body>
-  @yield('content')
+  @include('layouts.header')
+  <div class="container">
+    @yield('content')
+    @include('layouts.footer')
+  </div>
 </body>
 
 </html>

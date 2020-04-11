@@ -18,9 +18,6 @@ class StaticPagesControllerTest extends TestCase
     $response = $this->get('/');
     $response->assertSuccessful();
 
-    $response = $this->get('/static_pages/home');
-    $response->assertRedirect('/');
-
     $response = $this->get('/static_pages/help');
     $response->assertSuccessful();
 
