@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'StaticPagesController@home')->name('root');
-Route::get('static_pages/help', 'StaticPagesController@help')->name('help');
-Route::get('static_pages/about', 'StaticPagesController@about')->name('about');
-Route::get('static_pages/contact', 'StaticPagesController@contact')->name('contact');
-
+Route::get('/help', 'StaticPagesController@help')->name('help');
+Route::get('/about', 'StaticPagesController@about')->name('about');
+Route::get('/contact', 'StaticPagesController@contact')->name('contact');
+Route::resource('users', 'UsersController');
 Route::get('users/signup', 'UsersController@new')->name('users.signup');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
