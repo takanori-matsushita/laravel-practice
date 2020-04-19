@@ -1,6 +1,27 @@
-@extends('layouts.app')
+@php
+$title = 'Log in'
+@endphp
+@extends('layouts.layout')
 
 @section('content')
+<h1>Log in</h1>
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <form action="{{route('login')}}" method="post">
+      @csrf
+      @include('shared.error_messages')
+      <label for="email">Email</label>
+      <input type="text" name="email" class="form-control" id="session_email" value="{{old('email')}}">
+      <label for="password">Password</label>
+      <input type="password" name="password" class="form-control" id="session_password">
+      <input type="submit" class="btn btn-primary" value="Log in!">
+    </form>
+    <p>New user? <a href="{{route('users.signup')}}">Sign up now!</a></p>
+  </div>
+</div>
+@endsection
+
+<!-- @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -70,4 +91,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection -->

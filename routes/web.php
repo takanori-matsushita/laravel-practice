@@ -19,9 +19,6 @@ Route::get('/about', 'StaticPagesController@about')->name('about');
 Route::get('/contact', 'StaticPagesController@contact')->name('contact');
 Route::resource('users', 'UsersController');
 Route::get('/signup', 'Auth\RegisterController@showRegistrationForm')->name('users.signup');
-Route::post('/users', 'Auth\RegisterController@register')->name('users.create');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/flash', 'HomeController@flash')->name('flash');
-
 
 Auth::routes();

@@ -6,6 +6,8 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Laravel\Dusk\TestCase as BaseTestCase;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 abstract class DuskTestCase extends BaseTestCase
 {
@@ -42,5 +44,14 @@ abstract class DuskTestCase extends BaseTestCase
         $options
       )
     );
+  }
+
+  protected function registerUser()
+  {
+    return factory(User::class)->create([
+      "name" => "Example User",
+      "email" => "example@railstutorial.org",
+      "password" => Hash::make('password')
+    ]);
   }
 }
