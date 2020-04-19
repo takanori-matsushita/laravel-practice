@@ -7,12 +7,6 @@ use App\User;
 
 class UsersController extends Controller
 {
-  public function new()
-  {
-    $user = new User();
-    return view('users.new', ["user" => $user]);
-  }
-
   public function show($id)
   {
     $user = User::find($id);

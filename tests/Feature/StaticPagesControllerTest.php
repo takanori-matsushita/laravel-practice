@@ -18,13 +18,13 @@ class StaticPagesControllerTest extends TestCase
     $response = $this->get('/');
     $response->assertSuccessful();
 
-    $response = $this->get('/static_pages/help');
+    $response = $this->get('/help');
     $response->assertSuccessful();
 
-    $response = $this->get('/static_pages/about');
+    $response = $this->get('/about');
     $response->assertSuccessful();
 
-    $response = $this->get('/static_pages/contact');
+    $response = $this->get('/contact');
     $response->assertSuccessful();
   }
 }

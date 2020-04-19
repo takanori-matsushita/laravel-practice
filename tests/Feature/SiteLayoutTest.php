@@ -22,6 +22,6 @@ class SiteLayoutTest extends TestCase
   public function testSignupViewIs()
   {
     $response = $this->get(route('users.signup'));
-    $response->assertViewIs('users.new');
+    $response->assertViewIs('auth.register');
   }
 }

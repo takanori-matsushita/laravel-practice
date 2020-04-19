@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Foundation\Auth\RegistersUsers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,8 +18,10 @@ Route::get('/help', 'StaticPagesController@help')->name('help');
 Route::get('/about', 'StaticPagesController@about')->name('about');
 Route::get('/contact', 'StaticPagesController@contact')->name('contact');
 Route::resource('users', 'UsersController');
-Route::get('users/signup', 'UsersController@new')->name('users.signup');
+Route::get('/signup', 'Auth\RegisterController@showRegistrationForm')->name('users.signup');
+Route::post('/users', 'Auth\RegisterController@register')->name('users.create');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/flash', 'HomeController@flash')->name('flash');
+
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

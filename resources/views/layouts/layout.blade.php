@@ -10,6 +10,7 @@
 <body>
   @include('layouts.header')
   <div class="container">
+    @include('layouts.flash')
     @yield('content')
     @include('layouts.footer')
   </div>

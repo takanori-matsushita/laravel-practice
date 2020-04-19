@@ -13,11 +13,11 @@ class UsersBrowserTest extends DuskTestCase
    *
    * @return void
    */
-  public function testExample()
+  public function testAccessSignupPage()
   {
     $this->browse(function (Browser $browser) {
       $browser->visit(route('users.signup'))
-        ->assertPathIs('/users/signup');
+        ->assertPathIs('/signup');
     });
   }
 }
