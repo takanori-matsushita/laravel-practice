@@ -8,9 +8,25 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\UserFormRequest;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class UserTest extends TestCase
 {
+  use DatabaseMigrations;
+
+  private $attributes;
+
+  public function setUp(): void
+  {
+    parent::setUp();
+
+    $this->attributes = [
+      'name'     => 'Laravel User',
+      'email'     => 'laravel@example.com',
+      'password' => bcrypt('password'),
+    ];
+  }
+
   /**
    * A basic feature test example.
    * 
@@ -20,6 +36,7 @@ class UserTest extends TestCase
 
   public function testShouldBeValid($name, $email, $expect)
   {
+    User::create($this->attributes);
     $request = new UserFormRequest();
     $rules = $request->rules();
     $item = ["name" => $name, "email" => $email, "password" => "password"];
@@ -44,6 +61,7 @@ class UserTest extends TestCase
 
   private function stringUpper($emailUpper)
   {
+    User::create($this->attributes);
     $users = User::all();
     foreach ($users as $user) {
       if ($emailUpper === strtoupper($user["email"])) {
@@ -69,6 +87,7 @@ class UserTest extends TestCase
 
   private function stringLower($emailUpper)
   {
+    User::create($this->attributes);
     $users = User::all();
     foreach ($users as $user) {
       if ($emailUpper === strtolower($user["email"])) {
@@ -97,8 +116,6 @@ class UserTest extends TestCase
 
   public function userDataProvider()
   {
-    $this->createApplication();  //Userモデルを使用する際に
-    $user = User::find(1)->toArray();
     return [
       'true' => ["Example User", "user@example.com", true],
       //nameバリデーション
@@ -107,7 +124,7 @@ class UserTest extends TestCase
       //emailバリデーション
       'email required error' => ["Example User", "", false],
       'email max_length error' => ["Example User", str_repeat("a", 244) . "@example.com", false],
-      'email unique error' => [$user["name"], $user["email"], false],
+      'email unique error' => ["Laravel User", "laravel@example.com", false],
       //emailが有効なパターン
       'email user@example.com' => ["Example User", "user@example.com", true],
       'email USER@foo.COM' => ["Example User", "USER@foo.com", true],
@@ -126,10 +143,9 @@ class UserTest extends TestCase
 
   public function emailDataProvider()
   {
-    $user = User::find(1)->toArray();
     return [
       'email upper lower passed' => ["user@example.com", false],
-      'email upper lower error' => [$user["email"], true],
+      'email upper lower error' => ["laravel@example.com", true],
     ];
   }
 

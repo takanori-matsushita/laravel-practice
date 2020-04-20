@@ -14,6 +14,11 @@ $title = 'Log in'
       <input type="text" name="email" class="form-control" id="session_email" value="{{old('email')}}">
       <label for="password">Password</label>
       <input type="password" name="password" class="form-control" id="session_password">
+      <label for="remember" class="checkbox inline">
+        <input class="form-check-input" type="checkbox" name="remember" id="session_remember_me" {{ old('remember') ? 'checked' : '' }}>
+        <span>Remember me on this computer</span>
+      </label>
+
       <input type="submit" class="btn btn-primary" value="Log in!">
     </form>
     <p>New user? <a href="{{route('users.signup')}}">Sign up now!</a></p>
