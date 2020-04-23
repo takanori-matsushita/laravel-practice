@@ -11075,3 +11075,35 @@ input {
   margin-left: 0;
 }
 
+/* Users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+}
+
+.users li {
+  overflow: auto;
+  padding: 10px 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.delete {
+  display: inline;
+}
+
+.delete button[type=submit] {
+  background: none;
+  border: none;
+  color: #3490dc;
+}
+
+.delete button[type=submit]:hover {
+  color: #1d68a7;
+  text-decoration: underline;
+}
+
+.delete button[type=submit]:focus {
+  outline: none;
+}
+

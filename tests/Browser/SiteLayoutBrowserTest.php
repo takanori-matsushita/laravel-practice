@@ -8,6 +8,7 @@ use Tests\DuskTestCase;
 
 class SiteLayoutBrowserTest extends DuskTestCase
 {
+  use DatabaseMigrations;
   /**
    * A Dusk test example.
    *
@@ -22,6 +23,26 @@ class SiteLayoutBrowserTest extends DuskTestCase
         ->assertSeeLink('Help')
         ->assertSeeLink('About')
         ->assertSeeLink('Contact');
+    });
+  }
+
+  public function testAuthorizeHeaderMenu()
+  {
+    $user = $this->registerUser();
+    $this->browse(function (Browser $browser) use ($user) {
+      $browser->visit(route('root'))
+        ->assertSeeLink('Home')
+        ->assertSeeLink('Help')
+        ->assertSeeLink('Login')
+        ->assertDontSeeLink('Users')
+        ->assertDontSee('Account')
+        ->visit(route('login'))
+        ->type('email', $user->email)
+        ->type('password', 'password')
+        ->press('Log in!')
+        ->assertDontSeeLink('Login')
+        ->assertSeeLink('Users')
+        ->assertSee('Account');
     });
   }
 }

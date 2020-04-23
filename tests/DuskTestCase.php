@@ -48,10 +48,52 @@ abstract class DuskTestCase extends BaseTestCase
 
   protected function registerUser()
   {
-    return factory(User::class)->create([
-      "name" => "Example User",
-      "email" => "example@railstutorial.org",
+    return  factory(User::class)->create([
+      "name" => "Michael Example",
+      "email" => "michael@example.com",
+      "password" => Hash::make('password'),
+      "admin" => true
+    ]);
+  }
+
+  protected function twoUsers()
+  {
+    $user1 = $this->registerUser();
+    $user2 = factory(User::class)->create([
+      "name" => "Sterling Archer",
+      "email" => "duchess@example.gov",
       "password" => Hash::make('password')
     ]);
+    return [$user1, $user2];
+  }
+
+  protected function anyUsers()
+  {
+    $user1 = $this->registerUser();
+    $user2 = factory(User::class)->create([
+      "name" => "Sterling Archer",
+      "email" => "duchess@example.gov",
+      "password" => Hash::make('password')
+    ]);
+    $user3 = factory(User::class)->create([
+      "name" => "Lana Kane",
+      "email" => "hands@example.gov",
+      "password" => Hash::make('password')
+    ]);
+    $user4 = factory(User::class)->create([
+      "name" => "Malory Archer",
+      "email" => "boss@example.gov",
+      "password" => Hash::make('password')
+    ]);
+    $users = [$user1, $user2, $user3, $user4];
+    for ($i = 1; $i < 30; $i++) {
+      $register = ${"user" . ($i + 4)} = factory(User::class)->create([
+        "name" => "User${i}",
+        "email" => "user-${i}@example.gov",
+        "password" => Hash::make('password')
+      ]);
+      array_push($users, $register);
+    }
+    return $users;
   }
 }

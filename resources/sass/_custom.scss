@@ -187,3 +187,31 @@ input {
     width: auto;
     margin-left: 0;
 }
+
+/* Users index */
+
+.users {
+    list-style: none;
+    margin: 0;
+    li {
+        overflow: auto;
+        padding: 10px 0;
+        border-bottom: 1px solid $gray-medium-light;
+    }
+}
+
+.delete {
+    display: inline;
+    button[type="submit"] {
+        background: none;
+        border: none;
+        color: #3490dc;
+        &:hover {
+            color: #1d68a7;
+            text-decoration: underline;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+}

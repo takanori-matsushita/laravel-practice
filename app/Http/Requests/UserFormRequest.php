@@ -3,7 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 use App\Rules\Uppercase;
+use Illuminate\Validation\Rule;
 
 class UserFormRequest extends FormRequest
 {
@@ -14,7 +16,7 @@ class UserFormRequest extends FormRequest
    */
   public function authorize()
   {
-    return false;
+    return true;
   }
 
   /**
@@ -22,12 +24,24 @@ class UserFormRequest extends FormRequest
    *
    * @return array
    */
-  public function rules()
+  public function rules(Request $request)
   {
+    $password = [];
+    if ($request->method() === 'POST') {
+      $password = [
+        "min:6",
+        "required"
+      ];
+    }
     return [
       "name" => "required|max:50",
-      "email" => "required|max:255|email:filter|unique:users",
-      "password" => "required|min:6"
+      "email" => [
+        "required",
+        "max:255",
+        "email:filter",
+        Rule::unique('users')->ignore(\Auth::id()),
+      ],
+      "password" => $password
     ];
   }
 }
