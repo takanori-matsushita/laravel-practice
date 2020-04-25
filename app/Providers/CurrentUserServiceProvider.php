@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
-class GetAuthIdServiceProvider extends ServiceProvider
+class CurrentUserServiceProvider extends ServiceProvider
 {
   /**
    * Register services.
@@ -25,8 +25,8 @@ class GetAuthIdServiceProvider extends ServiceProvider
   public function boot()
   {
     View::composer(
-      ['layouts.header', 'shared.user_info'],
-      'App\Http\Composers\AuthIdComposer'
+      'static_pages.home',
+      'App\Http\Composers\CurrentUserComposer'
     );
   }
 }

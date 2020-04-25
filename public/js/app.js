@@ -37328,6 +37328,8 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./micropost_picture */ "./resources/js/micropost_picture.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -37372,6 +37374,23 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/micropost_picture.js":
+/*!*******************************************!*\
+  !*** ./resources/js/micropost_picture.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$("#micropost_picture").bind("change", function () {
+  var size_in_megabytes = this.files[0].size / 1024 / 1024;
+
+  if (size_in_megabytes > 5) {
+    alert("Maximum file size is 5MB. Please choose a smaller file.");
+  }
+});
 
 /***/ }),
 

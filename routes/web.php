@@ -20,5 +20,5 @@ Route::get('/contact', 'StaticPagesController@contact')->name('contact');
 Route::resource('users', 'UsersController');
 Route::get('/signup', 'Auth\RegisterController@showRegistrationForm')->name('users.signup');
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::resource('microposts', 'MicropostController', ['only' => ['store', 'destroy']])->middleware('auth');
 Auth::routes();

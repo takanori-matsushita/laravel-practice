@@ -12,5 +12,14 @@ $title = $user->name
       </h1>
     </section>
   </aside>
+  <div class="col-md-8">
+    @if (!empty($user->microposts))
+    <h3>Microposts ({{ $user->microposts->count() }})</h3>
+    <ol class="microposts">
+      @each('components.micropost', $microposts, 'micropost')
+    </ol>
+    {{$microposts->links()}}
+    @endif
+  </div>
 </div>
 @endsection

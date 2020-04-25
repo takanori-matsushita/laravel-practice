@@ -1,5 +1,7 @@
 <?php
 
+use App\Providers\CurrentUserServiceProvider;
+
 return [
 
   /*
@@ -165,7 +167,7 @@ return [
     /*
          * Package Service Providers...
          */
-
+    Intervention\Image\ImageServiceProvider::class,
     /*
          * Application Service Providers...
          */
@@ -180,6 +182,7 @@ return [
         *View Composer Service Providers...
         */
     App\Providers\GetAuthIdServiceProvider::class,
+    App\Providers\CurrentUserServiceProvider::class,
   ],
 
   /*
@@ -232,6 +235,7 @@ return [
     'Validator' => Illuminate\Support\Facades\Validator::class,
     'View' => Illuminate\Support\Facades\View::class,
     'Debugbar' => Barryvdh\Debugbar\Facade::class,
+    'Image' => Intervention\Image\Facades\Image::class,
   ],
 
 ];

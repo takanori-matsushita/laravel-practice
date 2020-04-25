@@ -30,7 +30,8 @@ class UsersController extends Controller
   public function show(User $user)
   {
     $grav_url = "http://www.gravatar.com/avatar/" . md5(strtolower(trim($user->email)));
-    return view('users.show', ['user' => $user, 'grav_url' => $grav_url]);
+    $microposts = $user->microposts()->paginate(30);
+    return view('users.show', ['user' => $user, 'grav_url' => $grav_url, 'microposts' => $microposts]);
   }
 
   public function edit(User $user)

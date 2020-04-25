@@ -10,9 +10,9 @@ $title = 'Edit user';
       @csrf
       @include('shared.error_messages')
       <label for="name">Name</label>
-      <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{$user->name}}">
+      <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{old('name', $user->name)}}">
       <label for="email">Email</label>
-      <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{$user->email}}">
+      <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email', $user->email)}}">
       <label for="password">Password</label>
       <input type="password" name="password" class="form-control @error('password') is-invalid @enderror">
       <label for="password_confirmation">Password Confirmation</label>
