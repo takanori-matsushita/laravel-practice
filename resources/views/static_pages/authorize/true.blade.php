@@ -3,6 +3,9 @@
     <section class="user_info">
       @include('shared.user_info')
     </section>
+    <section class="stats">
+      @include('shared.stats')
+    </section>
     <section class="micropost_form">
       @include('shared.micropost_form')
     </section>

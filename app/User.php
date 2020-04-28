@@ -50,4 +50,45 @@ class User extends Authenticatable
   {
     return $this->hasMany('App\Micropost');
   }
+
+  public function feed()
+  {
+    $following_ids = Relationship::where('follower_id', 1)->get('followed_id');
+    return Micropost::whereIn('user_id', $following_ids)->orWhere('user_id', \Auth::id());
+  }
+
+  public function active_relationships()
+  {
+    return $this->hasMany('App\Relationship', 'follower_id');
+  }
+
+  public function passive_relationships()
+  {
+    return $this->hasMany('App\Relationship', 'followed_id');
+  }
+
+  public function followers()
+  {
+    return $this->belongsToMany(self::class, 'relationships', 'followed_id', 'follower_id')->withTimestamps();
+  }
+
+  public function following()
+  {
+    return $this->belongsToMany(self::class, 'relationships', 'follower_id', 'followed_id')->withTimestamps();
+  }
+
+  public function follow($other_user)
+  {
+    return $this->following()->attach($other_user);
+  }
+
+  public function unfollow($other_user)
+  {
+    return $this->following()->detach([$other_user]);
+  }
+
+  public function is_following($other_user)
+  {
+    return (bool) $this->following()->where('followed_id', $other_user)->first(['id']);
+  }
 }

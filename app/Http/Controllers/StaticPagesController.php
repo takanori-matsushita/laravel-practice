@@ -8,7 +8,10 @@ class StaticPagesController extends Controller
 {
   public function home()
   {
-    return view('static_pages.home');
+    // \Auth::user() ? $feed_items = \Auth::user()->microposts()->where('user_id', \Auth::id())->paginate(30) : $feed_items = [];
+    \Auth::user() ? $feed_items = \Auth::user()->feed()->paginate(30) : $feed_items = [];
+    $user = \Auth::user();
+    return view('static_pages.home', ['user' => $user, 'feed_items' => $feed_items]);
   }
 
   public function help()

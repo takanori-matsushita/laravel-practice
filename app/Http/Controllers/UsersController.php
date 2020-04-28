@@ -13,7 +13,7 @@ class UsersController extends Controller
   public function __construct()
   {
     $this->middleware('auth', [
-      'only' => ['index', 'edit', 'update', 'destroy']
+      'only' => ['index', 'edit', 'update', 'destroy', 'following', 'followers']
     ]);
 
     $this->middleware(AdminUser::class, [
@@ -62,5 +62,19 @@ class UsersController extends Controller
     $user->delete();
     session()->flash('success', 'User deleted');
     return redirect()->route('users.index');
+  }
+
+  public function following(User $user)
+  {
+    $title = 'Following';
+    $users = $user->following()->paginate(30);
+    return view('users.show_follow', ['title' => $title, 'users' => $users, 'user' => $user]);
+  }
+
+  public function followers(User $user)
+  {
+    $title = 'Followers';
+    $users = $user->followers()->paginate(30);
+    return view('users.show_follow', ['title' => $title, 'users' => $users, 'user' => $user]);
   }
 }

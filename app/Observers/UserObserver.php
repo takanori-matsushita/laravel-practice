@@ -39,6 +39,12 @@ class UserObserver
     $user->microposts->each(function ($post) {
       $post->delete();
     });
+    $user->active_relationships->each(function ($follower) {
+      $follower->delete();
+    });
+    $user->passive_relationships->each(function ($followed) {
+      $followed->delete();
+    });
   }
 
   /**

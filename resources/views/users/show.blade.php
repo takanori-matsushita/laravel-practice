@@ -11,8 +11,14 @@ $title = $user->name
         {{$user->name}}
       </h1>
     </section>
+    <section class="stats">
+      @include('shared.stats')
+    </section>
   </aside>
   <div class="col-md-8">
+    @auth
+    @include('users.follow_form')
+    @endauth
     @if (!empty($user->microposts))
     <h3>Microposts ({{ $user->microposts->count() }})</h3>
     <ol class="microposts">
